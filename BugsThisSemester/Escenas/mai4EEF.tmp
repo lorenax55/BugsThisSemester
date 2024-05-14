@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6q18b05s7367"]
+
+[ext_resource type="Texture2D" uid="uid://epgttcfnodyr" path="res://Images/Fondo.png" id="1_bnuft"]
+[ext_resource type="Texture2D" uid="uid://ccsk3fvvwwd7q" path="res://Images/rock1.png" id="2_4ksph"]
+[ext_resource type="Script" path="res://Escenas/RigidBody2D.gd" id="2_milh0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4j14l"]
+radius = 125.0
+height = 370.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Fondo" type="Sprite2D" parent="."]
+position = Vector2(-8.00002, 15.5)
+scale = Vector2(1.08348, 1.08348)
+texture = ExtResource("1_bnuft")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+script = ExtResource("2_milh0")
+
+[node name="Roca" type="Sprite2D" parent="RigidBody2D"]
+texture = ExtResource("2_4ksph")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_4j14l")

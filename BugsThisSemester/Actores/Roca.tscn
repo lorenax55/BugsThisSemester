@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://b3pvp2mnt1xj1"]
+
+[ext_resource type="Script" path="res://Actores/Roca.gd" id="1_vgxx2"]
+[ext_resource type="Texture2D" uid="uid://ccsk3fvvwwd7q" path="res://Images/rock1.png" id="2_26tey"]
+[ext_resource type="Texture2D" uid="uid://bs5owk65s4shl" path="res://Images/rock2.png" id="2_fc4ex"]
+[ext_resource type="Texture2D" uid="uid://pg63hb3ov66r" path="res://Images/rock3.png" id="4_uywrl"]
+[ext_resource type="Texture2D" uid="uid://bs6ksaptyxpqx" path="res://Images/rock4.png" id="5_6qwau"]
+[ext_resource type="Texture2D" uid="uid://bi716ao3nfqr5" path="res://Images/rock5.png" id="6_fyvky"]
+[ext_resource type="Texture2D" uid="uid://xih3m8hwoc6y" path="res://Images/rock6.png" id="7_h7eu0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a1yak"]
+radius = 136.0
+height = 394.0
+
+[node name="Roca" type="Node2D"]
+script = ExtResource("1_vgxx2")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_a1yak")
+
+[node name="Rock1" type="Sprite2D" parent="."]
+position = Vector2(-3, -5)
+texture = ExtResource("2_26tey")
+
+[node name="Rock2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2, 5)
+texture = ExtResource("2_fc4ex")
+
+[node name="Rock3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2, 5)
+texture = ExtResource("4_uywrl")
+
+[node name="Rock4" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2, 5)
+texture = ExtResource("5_6qwau")
+
+[node name="Rock5" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2, 5)
+texture = ExtResource("6_fyvky")
+
+[node name="Rock6" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2, 5)
+texture = ExtResource("7_h7eu0")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

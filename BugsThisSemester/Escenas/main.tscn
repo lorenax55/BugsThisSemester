@@ -1,0 +1,94 @@
+[gd_scene load_steps=11 format=3 uid="uid://b6q18b05s7367"]
+
+[ext_resource type="Texture2D" uid="uid://epgttcfnodyr" path="res://Images/Fondo.png" id="1_bnuft"]
+[ext_resource type="PackedScene" uid="uid://cm14ukqnp88w3" path="res://Actores/Bicho.tscn" id="2_n7ilf"]
+[ext_resource type="PackedScene" uid="uid://b3pvp2mnt1xj1" path="res://Actores/Roca.tscn" id="2_ook2p"]
+[ext_resource type="Texture2D" uid="uid://truhdmuf17ll" path="res://Images/Button1.png" id="4_pw11b"]
+[ext_resource type="Texture2D" uid="uid://bhy04diebh7gf" path="res://Images/ButtonPressed.png" id="5_cd7fp"]
+[ext_resource type="Texture2D" uid="uid://devivcnlj7otf" path="res://Images/Button2.png" id="6_bvyvv"]
+[ext_resource type="Script" path="res://Escenas/TextureButton.gd" id="7_xlcai"]
+[ext_resource type="Texture2D" uid="uid://patvjpwd317d" path="res://Images/portada.png" id="8_nc5jq"]
+
+[sub_resource type="Animation" id="Animation_vor0q"]
+resource_name = "PassAnimation"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Portada:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-739, 19), Vector2(15, 19), Vector2(15, 19), Vector2(-739, 19)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Roca")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"change_rock"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bicho")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"change_bug"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ppne0"]
+_data = {
+"PassAnimation": SubResource("Animation_vor0q")
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Fondo" type="Sprite2D" parent="."]
+position = Vector2(-8.00002, 15.5)
+scale = Vector2(1.08348, 1.08348)
+texture = ExtResource("1_bnuft")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Bicho" parent="." instance=ExtResource("2_n7ilf")]
+
+[node name="Roca" parent="." instance=ExtResource("2_ook2p")]
+scale = Vector2(1.3, 1.3)
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = -61.0
+offset_top = 183.0
+offset_right = 60.0
+offset_bottom = 303.0
+texture_normal = ExtResource("4_pw11b")
+texture_pressed = ExtResource("6_bvyvv")
+texture_hover = ExtResource("5_cd7fp")
+script = ExtResource("7_xlcai")
+
+[node name="Portada" type="Sprite2D" parent="."]
+position = Vector2(-739, 19)
+texture = ExtResource("8_nc5jq")
+
+[node name="PassPortada" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ppne0")
+}
+
+[connection signal="pressed" from="TextureButton" to="Roca" method="_on_texture_button_pressed"]
