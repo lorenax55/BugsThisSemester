@@ -21,8 +21,8 @@ func _process(delta):
 			global_position = get_global_mouse_position() + offset
 		elif Input.is_action_pressed("Click"):
 			global_position = get_global_mouse_position() + offset
-		elif Input.is_action_just_released("Click"):
-			draggable = false
+		#elif Input.is_action_just_released("Click"):
+			#draggable = false
 	pass
 
 func _on_area_2d_mouse_entered():
